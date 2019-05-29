@@ -91,14 +91,4 @@ new_data.2 %>%
   geom_smooth(method = "glm", aes(x = Year.of.birth, y = dial_perc),
     method.args = list(family = "binomial"), 
     se = TRUE)
-
-new_data %>%
-  filter(Year.of.birth > 0) -> new_data
-
-model <- lmer(data = new_data, as.numeric(realization) ~ Year.of.birth + (1|speaker) + (1|Sex))
-ggplot(new_data, aes(x = Year.of.birth, y = realization, colour=Sex)) +
-  geom_point(shape = 16, size=1.8) +
-  geom_abline(aes(intercept=`(Intercept)`, slope=Year.of.birth), as.data.frame(t(fixef(model))))
-
-
 ```
